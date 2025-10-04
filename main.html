@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Министерство внутренних дел Российской Федерации</title>
+    <style>
+        /* Общие стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Шапка сайта */
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo img {
+            height: 70px;
+        }
+
+        .logo-text h1 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .logo-text p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Навигация */
+        nav {
+            background-color: #16376d;
+            padding: 0.5rem 0;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: block;
+            transition: background-color 0.3s;
+            font-weight: 500;
+        }
+
+        nav ul li a:hover {
+            background-color: #2a5298;
+        }
+
+        /* Основной контент */
+        .hero {
+            background: url('https://via.placeholder.com/1920x600/1e3c72/FFFFFF?text=МВД+России') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+        }
+
+        .btn {
+            display: inline-block;
+            background: #d32f2f;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #b71c1c;
+        }
+
+        .news-section, .services-section {
+            padding: 50px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #1e3c72;
+            font-size: 2rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: #d32f2f;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .news-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .news-content {
+            padding: 20px;
+        }
+
+        .news-date {
+            color: #666;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+        }
+
+        .news-content h3 {
+            margin-bottom: 10px;
+            color: #1e3c72;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .service-card:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: #1e3c72;
+            margin-bottom: 15px;
+        }
+
+        /* Подвал сайта */
+        footer {
+            background: #1a1a1a;
+            color: #ddd;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: #d32f2f;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li a {
+                text-align: center;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <!-- Заглушка для логотипа. Замените src на путь к вашему изображению -->
+                    <img src="https://via.placeholder.com/70x70/FFFFFF/1e3c72?text=Герб" alt="Герб МВД России">
+                    <div class="logo-text">
+                        <h1>Министерство внутренних дел Российской Федерации</h1>
+                        <p>Официальный сайт</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Навигационное меню -->
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#">Главная</a></li>
+                <li><a href="#">О Министерстве</a></li>
+                <li><a href="#">Структура</a></li>
+                <li><a href="#">Новости</a></li>
+                <li><a href="#">Госуслуги</a></li>
+                <li><a href="#">Противодействие коррупции</a></li>
+                <li><a href="#">Контакты</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Основное содержимое -->
+    <main>
+        <!-- Герой-секция -->
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Служа закону, служим народу</h2>
+                <p>Обеспечение безопасности, правопорядка и защиты прав граждан Российской Федерации</p>
+                <a href="#" class="btn">Обратиться в МВД</a>
+            </div>
+        </section>
+
+        <div class="container">
+            <!-- Секция новостей -->
+            <section class="news-section">
+                <h2 class="section-title">Последние новости</h2>
+                <div class="news-grid">
+                    <article class="news-card">
+                        <img src="https://via.placeholder.com/400x200/1e3c72/FFFFFF?text=Новость+1" alt="Новость 1">
+                        <div class="news-content">
+                            <div class="news-date">15 октября 2023</div>
+                            <h3>Заголовок последней новости о деятельности МВД</h3>
+                            <p>Краткое описание новости, которое может заинтересовать посетителей сайта и побудить их прочитать полную версию.</p>
+                        </div>
+                    </article>
+                    <article class="news-card">
+                        <img src="https://via.placeholder.com/400x200/2a5298/FFFFFF?text=Новость+2" alt="Новость 2">
+                        <div class="news-content">
+                            <div class="news-date">14 октября 2023</div>
+                            <h3>Еще одна важная новость от Министерства</h3>
+                            <p>Еще одно краткое описание новости, которое информирует граждан о важных событиях и изменениях.</p>
+                        </div>
+                    </article>
+                    <article class="news-card">
+                        <img src="https://via.placeholder.com/400x200/16376d/FFFFFF?text=Новость+3" alt="Новость 3">
+                        <div class="news-content">
+                            <div class="news-date">13 октября 2023</div>
+                            <h3>Информация о новых государственных услугах</h3>
+                            <p>Описание новых возможностей получения государственных услуг в электронном формате.</p>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Секция услуг -->
+            <section class="services-section">
+                <h2 class="section-title">Государственные услуги</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🚔</div>
+                        <h3>Регистрация автотранспорта</h3>
+                        <p>Оформление и регистрация автомототранспортных средств</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🆔</div>
+                        <h3>Получение паспорта</h3>
+                        <p>Оформление и выдача паспорта гражданина Российской Федерации</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🛂</div>
+                        <h3>ВНЖ и разрешения</h3>
+                        <p>Оформление видов на жительство и разрешений на временное проживание</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">📝</div>
+                        <h3>Лицензирование</h3>
+                        <p>Лицензирование частной детективной и охранной деятельности</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Подвал сайта -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Контакты</h3>
+                    <ul>
+                        <li>Адрес: г. Москва, ул. Житная, 16</li>
+                        <li>Телефон: +7 (495) 667-70-70</li>
+                        <li>Факс: +7 (495) 667-79-90</li>
+                        <li>Email: info@mvd.ru</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Полезные ссылки</h3>
+                    <ul>
+                        <li><a href="#">Портал государственных услуг</a></li>
+                        <li><a href="#">Официальный сайт Правительства РФ</a></li>
+                        <li><a href="#">Президент России</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Информационные ресурсы</h3>
+                    <ul>
+                        <li><a href="#">Документы и отчеты</a></li>
+                        <li><a href="#">Вакансии</a></li>
+                        <li><a href="#">Противодействие коррупции</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Министерство внутренних дел Российской Федерации. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
